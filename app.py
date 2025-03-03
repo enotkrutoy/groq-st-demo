@@ -30,15 +30,15 @@ st.set_page_config(page_title="Groq Demo", page_icon="⚡️", layout="wide")
 
 st.title("Groq Demo")
 
-tab1, tab2 = st.tabs(["Text Generation", "Self-Discover"])
+tab1, tab2 = st.tabs(["Генерация текста", "Самопознание"])
 
 with tab1:
-    system_prompt = st.text_input("System Prompt", "You are a friendly chatbot.")
-    user_prompt = st.text_input("User Prompt", "Tell me a joke.")
-
+   system_prompt = st.text_input("system prompt", "Вы - являетесь экспертом для выполнения различных задач!")
+   user_prompt = st.text_input("user prompt", "Сформируйте ответ с учетом context, примерами кода и пояснениями.")
+   context = st.text_input("context", "https://console.groq.com/docs/autogen")
     # model_list = client.models.list().data
     # model_list = [model.id for model in model_list]
-    model_list = ["llama2-70b-4096", "mixtral-8x7b-32768"]
+    model_list = ["qwen-2.5-32b", "deepseek-r1-distill-llama-70b"]
 
     model = st.radio("Select the LLM", model_list, horizontal=True)
 
@@ -67,13 +67,13 @@ with tab1:
         time_taken.success(f"Time taken: {round(time.time() - start_time,4)} seconds")
 
 with tab2:
-    st.info("""['Self-Discover: Large Language Models Self-Compose Reasoning Structures'](https://arxiv.org/abs/2402.03620) - Zhou et al (2024)
+    st.info("""['Самопознание: крупные языковые модели самостоятельные структуры рассуждений'](https://arxiv.org/abs/2402.03620) - Zhou et al (2024)
     
-This is based on MrCatID's [implementation](https://github.com/catid/self-discover/blob/main/self_discover.py). 
-Credits to [Martin A](https://twitter.com/mdda123) for sharing this at [ML Singapore](https://www.meetup.com/machine-learning-singapore/)
+This is based on MrCatID's [implementation](https://github.com/enotkrutoy/groq-st-demo/blob/main/self_discover.py). 
+Credits to [Martin A](https://twitter.com/) for sharing this at [ML Singapore](https://www.meetup.com/machine-learning-singapore/)
     """)
-    task = st.text_input("What is your task?")
-    reasoning_model = st.radio("Select your LLM for this reasoning task", model_list, horizontal=True, help="mixtral is recommended for better performance, but appears to be slower")
+    task = st.text_input("Какова ваша задача?")
+    reasoning_model = st.radio("Выберите свой LLM для этой задачи рассуждения", model_list, horizontal=True, help="mixtral is recommended for better performance, but appears to be slower")
 
     button = st.empty()
     step4 = st.empty()
@@ -87,7 +87,7 @@ Credits to [Martin A](https://twitter.com/mdda123) for sharing this at [ML Singa
         select_reasoning_modules = ""
         stream_1 = client.chat.completions.create(
             model=reasoning_model,
-            messages=[{"role": "system", "content": "You are a world class expert in reasoning."},
+            messages=[{"role": "system", "content": "Вы - мировой эксперт в области рассуждений."},
                     {"role": "user", "content": prompt}],
             stream=True
         )
@@ -96,13 +96,13 @@ Credits to [Martin A](https://twitter.com/mdda123) for sharing this at [ML Singa
             chunk_content = chunk.choices[0].delta.content
             if chunk_content is not None:
                 select_reasoning_modules = select_reasoning_modules + chunk_content
-                step1.info("# Step 1: SELECT relevant reasoning modules for the task \n \n"+select_reasoning_modules)
+                step1.info("# Step 1: Выберите релевантные модули рассуждений для задачи \n \n"+select_reasoning_modules)
         
 
         prompt = adapt_reasoning_modules(select_reasoning_modules, task)
         stream_2 = client.chat.completions.create(
             model=reasoning_model,
-            messages=[{"role": "system", "content": "You are a world class expert in reasoning."},
+            messages=[{"role": "system", "content": "Вы - мировой эксперт в области рассуждений."},
                     {"role": "user", "content": prompt}],
             stream=True
         )
@@ -112,12 +112,12 @@ Credits to [Martin A](https://twitter.com/mdda123) for sharing this at [ML Singa
             chunk_content = chunk.choices[0].delta.content
             if chunk_content is not None:
                 adapted_modules = adapted_modules + chunk_content
-                step2.info("# Step 2: ADAPT the selected reasoning modules to be more specific to the task. \n \n " + adapted_modules)
+                step2.info("# Step 2: Адаптируйте выбранные модули рассуждений к конкретной задаче. \n \n " + adapted_modules)
 
         prompt = implement_reasoning_structure(adapted_modules, task)
         stream_3 = client.chat.completions.create(
             model=reasoning_model,
-            messages=[{"role": "system", "content": "You are a world class expert in reasoning."},
+            messages=[{"role": "system", "content": "Вы - мировой эксперт в области рассуждений."},
                     {"role": "user", "content": prompt}],
             stream=True
         )
@@ -127,12 +127,12 @@ Credits to [Martin A](https://twitter.com/mdda123) for sharing this at [ML Singa
             chunk_content = chunk.choices[0].delta.content
             if chunk_content is not None:
                 reasoning_structure = reasoning_structure + chunk_content
-                step3.info("# Step 3: IMPLEMENT the adapted reasoning modules into an actionable reasoning structure. \n \n " + reasoning_structure)
+                step3.info("# Step 3: Реализуйте адаптированные модули рассуждений в структуру действий. \n \n " + reasoning_structure)
 
         prompt = execute_reasoning_structure(reasoning_structure, task)
         stream_4 = client.chat.completions.create(
             model=reasoning_model,
-            messages=[{"role": "system", "content": "You are a world class expert in reasoning."},
+            messages=[{"role": "system", "content": "Вы - мировой эксперт в области рассуждений."},
                     {"role": "user", "content": prompt}],
             stream=True
         )
@@ -142,4 +142,4 @@ Credits to [Martin A](https://twitter.com/mdda123) for sharing this at [ML Singa
             chunk_content = chunk.choices[0].delta.content
             if chunk_content is not None:
                 result = result + chunk_content
-                step4.info("# Step 4: Execute the reasoning structure to solve a specific task instance. \n \n " + result)
+                step4.info("# Step 4: Выполните структуру рассуждений для решения конкретной задачи. \n \n " + result)
