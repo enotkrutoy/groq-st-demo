@@ -23,7 +23,7 @@ if not GROQ_API_KEY:
     st.stop()
 
 # Инициализация клиента Groq
-client = openai.OpenAI(
+client = OpenAI(
     api_key=GROQ_API_KEY,
     base_url="https://api.groq.com/openai/v1",
 )
