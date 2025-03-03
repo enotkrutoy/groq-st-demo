@@ -2,45 +2,45 @@
 self_discover.py
 """
 REASONING_MODULES = [
-  "1. How could I devise an experiment to help solve that problem?",
-  "2. Make a list of ideas for solving this problem, and apply them one by one to the problem to see if any progress can be made.",
-  #"3. How could I measure progress on this problem?",
-  "4. How can I simplify the problem so that it is easier to solve?",
-  "5. What are the key assumptions underlying this problem?",
-  "6. What are the potential risks and drawbacks of each solution?",
-  "7. What are the alternative perspectives or viewpoints on this problem?",
-  "8. What are the long-term implications of this problem and its solutions?",
-  "9. How can I break down this problem into smaller, more manageable parts?",
-  "10. Critical Thinking: This style involves analyzing the problem from different perspectives, questioning assumptions, and evaluating the evidence or information available. It focuses on logical reasoning, evidence-based decision-making, and identifying potential biases or flaws in thinking.",
-  "11. Try creative thinking, generate innovative and out-of-the-box ideas to solve the problem. Explore unconventional solutions, thinking beyond traditional boundaries, and encouraging imagination and originality.",
-  #"12. Seek input and collaboration from others to solve the problem. Emphasize teamwork, open communication, and leveraging the diverse perspectives and expertise of a group to come up with effective solutions.",
-  "13. Use systems thinking: Consider the problem as part of a larger system and understanding the interconnectedness of various elements. Focuses on identifying the underlying causes, feedback loops, and interdependencies that influence the problem, and developing holistic solutions that address the system as a whole.",
-  "14. Use Risk Analysis: Evaluate potential risks, uncertainties, and tradeoffs associated with different solutions or approaches to a problem. Emphasize assessing the potential consequences and likelihood of success or failure, and making informed decisions based on a balanced analysis of risks and benefits.",
-  #"15. Use Reflective Thinking: Step back from the problem, take the time for introspection and self-reflection. Examine personal biases, assumptions, and mental models that may influence problem-solving, and being open to learning from past experiences to improve future approaches.",
-  "16. What is the core issue or problem that needs to be addressed?",
-  "17. What are the underlying causes or factors contributing to the problem?",
-  "18. Are there any potential solutions or strategies that have been tried before? If yes, what were the outcomes and lessons learned?",
-  "19. What are the potential obstacles or challenges that might arise in solving this problem?",
-  "20. Are there any relevant data or information that can provide insights into the problem? If yes, what data sources are available, and how can they be analyzed?",
-  "21. Are there any stakeholders or individuals who are directly affected by the problem? What are their perspectives and needs?",
-  "22. What resources (financial, human, technological, etc.) are needed to tackle the problem effectively?",
-  "23. How can progress or success in solving the problem be measured or evaluated?",
-  "24. What indicators or metrics can be used?",
-  "25. Is the problem a technical or practical one that requires a specific expertise or skill set? Or is it more of a conceptual or theoretical problem?",
-  "26. Does the problem involve a physical constraint, such as limited resources, infrastructure, or space?",
-  "27. Is the problem related to human behavior, such as a social, cultural, or psychological issue?",
-  "28. Does the problem involve decision-making or planning, where choices need to be made under uncertainty or with competing objectives?",
-  "29. Is the problem an analytical one that requires data analysis, modeling, or optimization techniques?",
-  "30. Is the problem a design challenge that requires creative solutions and innovation?",
-  "31. Does the problem require addressing systemic or structural issues rather than just individual instances?",
-  "32. Is the problem time-sensitive or urgent, requiring immediate attention and action?",
-  "33. What kinds of solution typically are produced for this kind of problem specification?",
-  "34. Given the problem specification and the current best solution, have a guess about other possible solutions."
-  "35. Let’s imagine the current best solution is totally wrong, what other ways are there to think about the problem specification?"
-  "36. What is the best way to modify this current best solution, given what you know about these kinds of problem specification?"
-  "37. Ignoring the current best solution, create an entirely new solution to the problem."
-  #"38. Let’s think step by step."
-  "39. Let’s make a step by step plan and implement it with good notation and explanation."
+  "1. Как я могу разработать эксперимент, который поможет решить эту проблему?",
+  "2. Составьте список идей для решения этой проблемы и применяйте их одну за другой, чтобы увидеть, можно ли добиться какого-либо прогресса".
+  "3. Как я могу измерить прогресс в решении этой проблемы?",
+  "4. Как можно упростить задачу, чтобы ее было легче решить?",
+  "5. Каковы основные предположения, лежащие в основе этой проблемы?",
+  "6. Каковы потенциальные риски и недостатки каждого решения?",
+  "7. Каковы альтернативные перспективы или точки зрения на эту проблему?",
+  "8. Каковы долгосрочные последствия этой проблемы и ее решения?",
+  "9. Как мне разбить эту проблему на более мелкие, более управляемые части?",
+  "10. Критическое мышление: этот стиль включает анализ проблемы с разных точек зрения, оспаривание предположений и оценку имеющихся доказательств или информации. Он фокусируется на логических рассуждениях, принятии решений на основе доказательств и выявлении потенциальных предубеждений или недостатков в мышлении.",
+  "11. Попробуйте мыслить творчески, генерировать инновационные и нестандартные идеи для решения проблемы. Исследуйте нестандартные решения, думайте за пределами традиционных границ и поощряйте воображение и оригинальность".
+  "12. Стремитесь к вкладу и сотрудничеству со стороны других людей для решения проблемы. Подчеркивайте важность командной работы, открытого общения и использования различных точек зрения и опыта группы для выработки эффективных решений.",
+  "13. Используйте системное мышление: рассматривайте проблему как часть более крупной системы и понимайте взаимосвязь различных элементов. Сосредоточьтесь на выявлении глубинных причин, обратных связей и взаимозависимостей, которые влияют на проблему, и на разработке целостных решений, которые затрагивают систему в целом".
+  "14. Используйте анализ рисков: оценивайте потенциальные риски, неопределенности и компромиссы, связанные с различными решениями или подходами к проблеме. Уделяйте особое внимание оценке потенциальных последствий и вероятности успеха или неудачи, а также принятию обоснованных решений на основе сбалансированного анализа рисков и выгод".
+  "15. Используйте рефлексивное мышление: отойдите от проблемы, найдите время для самоанализа и самоанализа. Изучите личные предубеждения, предположения и ментальные модели, которые могут повлиять на решение проблем, и будьте открыты для обучения на прошлом опыте, чтобы улучшить будущие подходы.",
+  "16. Какую основную проблему или вопрос необходимо решить?",
+  "17. Каковы основные причины или факторы, способствующие возникновению проблемы?",
+  "18. Существуют ли какие-либо потенциальные решения или стратегии, которые были опробованы ранее? Если да, то каковы были результаты и извлеченные уроки?",
+  "19. Какие потенциальные препятствия или проблемы могут возникнуть при решении этой проблемы?",
+  "20. Имеются ли какие-либо соответствующие данные или информация, которые могут дать представление о проблеме? Если да, то какие источники данных доступны и как их можно проанализировать?",
+  "21. Есть ли заинтересованные стороны или лица, которых проблема затрагивает напрямую? Каковы их точки зрения и потребности?",
+  "22. Какие ресурсы (финансовые, человеческие, технологические и т. д.) необходимы для эффективного решения проблемы?",
+  "23. Как можно измерить или оценить прогресс или успех в решении проблемы?",
+  "24. Какие показатели или метрики можно использовать?",
+  "25. Является ли проблема технической или практической, требующей определенных знаний или навыков? Или это скорее концептуальная или теоретическая проблема?",
+  "26. Связана ли проблема с физическими ограничениями, такими как ограниченные ресурсы, инфраструктура или пространство?",
+  "27. Связана ли проблема с поведением человека, например, с социальной, культурной или психологической проблемой?",
+  "28. Включает ли проблема принятие решений или планирование, где выбор необходимо делать в условиях неопределенности или с конкурирующими целями?",
+  "29. Является ли проблема аналитической и требует анализа данных, моделирования или методов оптимизации?",
+  "30. Является ли проблема задачей дизайна, требующей творческих решений и инноваций?",
+  "31. Требует ли проблема решения системных или структурных вопросов, а не только отдельных случаев?",
+  "32. Является ли проблема срочной или требующей немедленного внимания и действий?",
+  "33. Какие решения обычно предлагаются для такого рода задач?",
+  "34. Учитывая спецификацию проблемы и текущее лучшее решение, предположите другие возможные решения".
+  "35. Давайте представим, что текущее лучшее решение совершенно неверно. Какие еще есть способы рассмотреть спецификацию проблемы?"
+  "36. Каков наилучший способ изменить это текущее лучшее решение, учитывая то, что вы знаете об этих типах спецификации проблем?"
+  "37. Игнорируя лучшее текущее решение, создайте совершенно новое решение проблемы".
+  "38. Давайте думать шаг за шагом."
+  "39. Давайте составим пошаговый план и реализуем его с хорошими обозначениями и объяснениями".
 ]
 
 
@@ -66,21 +66,21 @@ Without working out the full solution, adapt the following reasoning modules to 
 
 def implement_reasoning_structure(adapted_modules, task):
   """
-  Step 3: IMPLEMENT the adapted reasoning modules into an actionable reasoning structure.
+  Step 3: Реализуйте адаптированные модули рассуждений в действующую структуру рассуждений.
   """
   return f"""
-Without working out the full solution, create an actionable reasoning structure for the TASK below using these adapted reasoning modules:
+Не выработав полного решения, создайте действенную структуру рассуждений для задачи ниже, используя эти адаптированные модули рассуждений:
 {adapted_modules}
 {task}""".lstrip()
 
 def execute_reasoning_structure(reasoning_structure, task):
   """
-  Execute the reasoning structure to solve a specific task instance.
+  Выполните структуру рассуждения, чтобы решить конкретный экземпляр задачи.
   """
   return f"""
-Using the following reasoning structure:
+Используя следующую структуру рассуждений:
 {reasoning_structure}
 
-Solve this TASK, providing your final answer:
+Решите эту задачу, предоставив свой окончательный ответ:
 {task}
 """.lstrip()
