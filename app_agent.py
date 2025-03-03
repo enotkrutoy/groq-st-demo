@@ -16,14 +16,15 @@ from langchain_community.callbacks import StreamlitCallbackHandler
 from openai import OpenAI
 
 #client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
-GROQ_API_KEY = st.secrets.get("openai", {}).get("GROQ_API_KEY", None)
-if not GROQ_API_KEY:
-    st.error("Please add your Groq API key to the Streamlit secrets.toml file.")
+# Получение API-ключа из секретов
+groq_api_key = st.secrets.get("openai", {}).get("groq_api_key", None)
+if not groq_api_key:
+    st.error("Пожалуйста, добавьте свой API-ключ Groq в файл secrets.toml.")
     st.stop()
 
-# Initialize Groq client
+# Инициализация клиента Groq
 client = openai.OpenAI(
-    api_key=GROQ_API_KEY,
+    api_key=groq_api_key,
     base_url="https://api.groq.com/openai/v1",
 )
 def execute_search_agent(query):
